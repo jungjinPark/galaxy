@@ -1,0 +1,58 @@
+:root {
+  color-scheme: dark;
+  font-family: "Noto Sans KR", "Pretendard", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+#help {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(10, 10, 20, 0.58);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+#help h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+#help p {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.planet-label {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.95);
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.planet-label.earth {
+  color: #9ed8ff;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(90, 170, 255, 0.85);
+}
