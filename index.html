@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>태양 + 지구</title>
+  <title>태양계 - 수성 금성 지구</title>
   <style>
     body {
       margin: 0;
@@ -14,56 +14,84 @@
       overflow: hidden;
     }
 
-    /* 태양계 전체 컨테이너 */
     .solar-system {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 520px;
+      height: 520px;
     }
 
-    /* 태양 */
     .sun {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: radial-gradient(circle, #fff7a8, #ff9f1c, #ff5a00);
+      background: radial-gradient(circle at 35% 35%, #fff7a8, #ffb02e, #ff5a00);
       box-shadow:
         0 0 40px #ffcc33,
-        0 0 80px #ff9900,
-        0 0 140px #ff5500;
+        0 0 90px #ff9900,
+        0 0 150px #ff5500;
     }
 
-    /* 궤도 (원) */
     .orbit {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 300px;
-      height: 300px;
       transform: translate(-50%, -50%);
-      border: 1px dashed rgba(255,255,255,0.3);
+      border: 1px dashed rgba(255,255,255,0.28);
       border-radius: 50%;
-      animation: rotateOrbit 10s linear infinite;
+      animation: rotateOrbit linear infinite;
     }
 
-    /* 지구 */
-    .earth {
+    .planet {
       position: absolute;
       top: 0;
       left: 50%;
-      width: 30px;
-      height: 30px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: radial-gradient(circle, #6ec6ff, #1e88e5);
-      box-shadow: 0 0 10px #4fc3f7;
     }
 
-    /* 공전 애니메이션 */
+    .mercury-orbit {
+      width: 170px;
+      height: 170px;
+      animation-duration: 4s;
+    }
+
+    .venus-orbit {
+      width: 240px;
+      height: 240px;
+      animation-duration: 7s;
+    }
+
+    .earth-orbit {
+      width: 320px;
+      height: 320px;
+      animation-duration: 10s;
+    }
+
+    .mercury {
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle at 35% 35%, #eeeeee, #8d8d8d, #444);
+      box-shadow: 0 0 8px rgba(220,220,220,0.8);
+    }
+
+    .venus {
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle at 35% 35%, #ffe1a3, #d89032, #8a4d18);
+      box-shadow: 0 0 10px rgba(255,190,80,0.9);
+    }
+
+    .earth {
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle at 35% 35%, #8ee7ff, #1e88e5, #0d47a1);
+      box-shadow: 0 0 12px #4fc3f7;
+    }
+
     @keyframes rotateOrbit {
       from {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -79,8 +107,16 @@
 <div class="solar-system">
   <div class="sun"></div>
 
-  <div class="orbit">
-    <div class="earth"></div>
+  <div class="orbit mercury-orbit">
+    <div class="planet mercury"></div>
+  </div>
+
+  <div class="orbit venus-orbit">
+    <div class="planet venus"></div>
+  </div>
+
+  <div class="orbit earth-orbit">
+    <div class="planet earth"></div>
   </div>
 </div>
 
