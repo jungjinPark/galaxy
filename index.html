@@ -2,40 +2,59 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>색 바꾸기</title>
+  <title>나의 첫 번째 태양</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: white;
+      overflow: hidden;
       font-family: sans-serif;
     }
 
-    button {
-      padding: 20px 40px;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 10px;
-      border: none;
-      background: black;
-      color: white;
+    .sun {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        #fff7a8 0%,
+        #ffd447 25%,
+        #ff9f1c 50%,
+        #ff5a00 75%,
+        #d62800 100%
+      );
+      box-shadow:
+        0 0 40px #ffcc33,
+        0 0 90px #ff9900,
+        0 0 150px #ff5500;
+      animation: rotateSun 8s linear infinite, pulseSun 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes rotateSun {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseSun {
+      from {
+        box-shadow:
+          0 0 40px #ffcc33,
+          0 0 90px #ff9900,
+          0 0 150px #ff5500;
+      }
+      to {
+        box-shadow:
+          0 0 70px #fff066,
+          0 0 130px #ff9900,
+          0 0 220px #ff4400;
+      }
     }
   </style>
 </head>
 <body>
-
-<button onclick="changeColor()">색 바꾸기</button>
-
-<script>
-  function changeColor() {
-    const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
-    const random = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.background = random;
-  }
-</script>
-
+  <div class="sun"></div>
 </body>
 </html>
