@@ -2,12 +2,19 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>태양계 - 수성 금성 지구</title>
+  <title>태양계 - 화성 달 별 배경</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: #111;
+      background:
+        radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
+        radial-gradient(circle at 80% 20%, white 1px, transparent 2px),
+        radial-gradient(circle at 60% 70%, white 1px, transparent 2px),
+        radial-gradient(circle at 30% 80%, white 1px, transparent 2px),
+        radial-gradient(circle at 90% 60%, white 1px, transparent 2px),
+        #111;
+      background-size: 180px 180px, 240px 240px, 300px 300px, 220px 220px, 260px 260px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,8 +23,8 @@
 
     .solar-system {
       position: relative;
-      width: 520px;
-      height: 520px;
+      width: 650px;
+      height: 650px;
     }
 
     .sun {
@@ -29,10 +36,7 @@
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #fff7a8, #ffb02e, #ff5a00);
-      box-shadow:
-        0 0 40px #ffcc33,
-        0 0 90px #ff9900,
-        0 0 150px #ff5500;
+      box-shadow: 0 0 40px #ffcc33, 0 0 90px #ff9900, 0 0 150px #ff5500;
     }
 
     .orbit {
@@ -40,7 +44,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border: 1px dashed rgba(255,255,255,0.28);
+      border: 1px dashed rgba(255,255,255,0.26);
       border-radius: 50%;
       animation: rotateOrbit linear infinite;
     }
@@ -53,23 +57,10 @@
       border-radius: 50%;
     }
 
-    .mercury-orbit {
-      width: 170px;
-      height: 170px;
-      animation-duration: 4s;
-    }
-
-    .venus-orbit {
-      width: 240px;
-      height: 240px;
-      animation-duration: 7s;
-    }
-
-    .earth-orbit {
-      width: 320px;
-      height: 320px;
-      animation-duration: 10s;
-    }
+    .mercury-orbit { width: 170px; height: 170px; animation-duration: 4s; }
+    .venus-orbit   { width: 240px; height: 240px; animation-duration: 7s; }
+    .earth-orbit   { width: 320px; height: 320px; animation-duration: 10s; }
+    .mars-orbit    { width: 420px; height: 420px; animation-duration: 16s; }
 
     .mercury {
       width: 16px;
@@ -86,19 +77,51 @@
     }
 
     .earth {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       background: radial-gradient(circle at 35% 35%, #8ee7ff, #1e88e5, #0d47a1);
       box-shadow: 0 0 12px #4fc3f7;
     }
 
+    .mars {
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle at 35% 35%, #ffb18a, #d95a2b, #7a2412);
+      box-shadow: 0 0 10px rgba(255,100,50,0.9);
+    }
+
+    .moon-orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 52px;
+      height: 52px;
+      transform: translate(-50%, -50%);
+      border: 1px dotted rgba(255,255,255,0.25);
+      border-radius: 50%;
+      animation: rotateMoon 2s linear infinite;
+    }
+
+    .moon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #bdbdbd, #666);
+      box-shadow: 0 0 5px rgba(255,255,255,0.8);
+    }
+
     @keyframes rotateOrbit {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes rotateMoon {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
     }
   </style>
 </head>
@@ -116,7 +139,15 @@
   </div>
 
   <div class="orbit earth-orbit">
-    <div class="planet earth"></div>
+    <div class="planet earth">
+      <div class="moon-orbit">
+        <div class="moon"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="orbit mars-orbit">
+    <div class="planet mars"></div>
   </div>
 </div>
 
