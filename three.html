@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>3D 태양 실험</title>
+  <title>3D 태양과 지구</title>
   <style>
     body {
       margin: 0;
@@ -34,7 +34,7 @@
 </head>
 <body>
   <div id="help">
-    <b>3D 태양 실험</b><br />
+    <b>3D 태양 + 지구</b><br />
     드래그: 회전 / 휠: 확대·축소
   </div>
 
@@ -51,20 +51,24 @@
       0.1,
       1000
     );
-
-    camera.position.set(0, 2, 8);
+    camera.position.set(0, 6, 14);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    // 태양
     const sun = new THREE.Mesh(
       new THREE.SphereGeometry(2, 64, 64),
       new THREE.MeshBasicMaterial({ color: 0xffaa22 })
     );
     scene.add(sun);
 
+    // 태양 빛 번짐
     const glow = new THREE.Mesh(
       new THREE.SphereGeometry(2.4, 64, 64),
       new THREE.MeshBasicMaterial({
@@ -75,13 +79,55 @@
     );
     scene.add(glow);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+    // 조명
+    const pointLight = new THREE.PointLight(0xffcc66, 3, 100);
+    pointLight.position.set(0, 0, 0);
+    scene.add(pointLight);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(ambientLight);
+
+    // 지구 공전 그룹
+    const earthOrbitGroup = new THREE.Group();
+    scene.add(earthOrbitGroup);
+
+    // 지구
+    const earth = new THREE.Mesh(
+      new THREE.SphereGeometry(0.65, 48, 48),
+      new THREE.MeshStandardMaterial({
+        color: 0x1e88e5,
+        roughness: 0.6,
+        metalness: 0.0
+      })
+    );
+    earth.position.set(6, 0, 0);
+    earthOrbitGroup.add(earth);
+
+    // 궤도선
+    const orbitGeometry = new THREE.RingGeometry(5.98, 6.02, 128);
+    const orbitMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.25,
+      side: THREE.DoubleSide
+    });
+    const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
+    orbit.rotation.x = Math.PI / 2;
+    scene.add(orbit);
 
     function animate() {
       requestAnimationFrame(animate);
-      sun.rotation.y += 0.01;
-      glow.rotation.y += 0.006;
+
+      // 태양 자전
+      sun.rotation.y += 0.008;
+      glow.rotation.y += 0.004;
+
+      // 지구 자전
+      earth.rotation.y += 0.03;
+
+      // 지구 공전
+      earthOrbitGroup.rotation.y += 0.01;
+
       controls.update();
       renderer.render(scene, camera);
     }
